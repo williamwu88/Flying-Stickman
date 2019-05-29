@@ -54,11 +54,12 @@ SOURCES += \
     gamestatefactory.cpp \
     stage2gamestatefactory.cpp \
     stage3game.cpp \
-    stickmanmovingplayer.cpp \
     stage3gamefactory.cpp \
     stage3gamestatefactory.cpp \
     extendedconfigstage3.cpp \
-    victoryflag.cpp
+    victoryflag.cpp \
+    gamestatestage3.cpp \
+    stickmanplayerstage3.cpp
 
 HEADERS += \
     coordinate.h \
@@ -89,11 +90,12 @@ HEADERS += \
     gamestatefactory.h \
     stage2gamestatefactory.h \
     stage3game.h \
-    stickmanmovingplayer.h \
     stage3gamefactory.h \
     stage3gamestatefactory.h \
     extendedconfigstage3.h \
-    victoryflag.h
+    victoryflag.h \
+    gamestatestage3.h \
+    stickmanplayerstage3.h
 
 FORMS += \
     pausedialog.ui \

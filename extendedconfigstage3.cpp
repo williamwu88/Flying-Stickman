@@ -42,6 +42,13 @@ void ExtendedConfigStage3::setupStage3Config(){
                 }
 
                 level = element.toInt();
+            }else if(split_line.first() == "Life"){
+                if (element.toInt() < 0 || element.toInt() == 0){
+                    std::cerr << "Life is not valid. Life should be a number >0" << std::endl;
+                    return;
+                }
+
+                life = element.toInt();
             }
         }
 

@@ -1,15 +1,16 @@
 #include "stage3gamestatefactory.h"
 #include "stage3game.h"
-#include "stickmanplayer.h"
+//#include "stickmanplayer.h"
+#include "stickmanplayerstage3.h"
 #include "obstacle.h"
-#include "gamestate.h"
+//#include "gamestate.h"
 #include "extendedconfig.h"
 #include "emptyentity.h"
 #include "victoryflag.h"
 #include <sstream>
 
 GameState *Stage3GameStateFactory::createGameState(){
-    GameState* state = new GameState();
+    GameStateStage3* state = new GameStateStage3();
 
     unsigned int world_height = Config::config()->getWorldHeight();
     unsigned int world_width = Config::config()->getWorldWidth();
@@ -18,7 +19,7 @@ GameState *Stage3GameStateFactory::createGameState(){
     Background* background = new Background(Coordinate(0, world_height, world_height, world_width));
 
     // Might change this
-    StickmanPlayer* player = new StickmanPlayer(new Coordinate(Config::config()->getStickman()->getXPosition()- (Config::config()->getStickman()->getWidth()*0.5),
+    StickmanPlayerStage3* player = new StickmanPlayerStage3(new Coordinate(Config::config()->getStickman()->getXPosition()- (Config::config()->getStickman()->getWidth()*0.5),
                                                 0 + Config::config()->getStickman()->getHeight(),
                                                 world_height,
                                                 world_width),
@@ -26,7 +27,7 @@ GameState *Stage3GameStateFactory::createGameState(){
     Coordinate* pos = new Coordinate(0, 0, world_height, world_width);
     EmptyEntity* root = new EmptyEntity(pos, "root");
 
-    // Might change this
+    // Will change this!
     ExtendedConfig config(*Config::config());
     // Load obstacle data
     std::vector<ObstacleConfig*> obstacle_data = config.getObstacleData();
