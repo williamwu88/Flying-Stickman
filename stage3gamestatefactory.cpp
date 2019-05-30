@@ -7,6 +7,7 @@
 #include "extendedconfig.h"
 #include "emptyentity.h"
 #include "victoryflag.h"
+#include "scoreboard.h"
 #include <sstream>
 
 GameState *Stage3GameStateFactory::createGameState(){
@@ -63,8 +64,6 @@ GameState *Stage3GameStateFactory::createGameState(){
                                                loop, "victory_flag");
     root->addChild(victoryflag);
     count++;
-
-
 
     // Create entity tree
     state->setRootEntity(root);

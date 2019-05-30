@@ -2,6 +2,7 @@
 #define GAMESTATESTAGE3_H
 
 #include "gamestate.h"
+#include "scoreboard.h"
 #include <string>
 #include <vector>
 
@@ -16,6 +17,8 @@ public:
 
     void checkCollisions() override;
     void update(bool paused) override;
+
+    bool getGameOver() override {return gameover;}
 
 protected:
 

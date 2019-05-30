@@ -1,6 +1,7 @@
 #include "gamestatestage3.h"
 
 #include "background.h"
+#include "coordinate.h"
 #include "entity.h"
 #include "player.h"
 #include "rectcollider.h"
@@ -9,8 +10,8 @@
 #include "emptyentity.h"
 #include "victoryflag.h"
 #include <sstream>
-
 #include <iostream>
+#include <unistd.h>
 
 GameStateStage3::GameStateStage3()
     : GameState()
@@ -74,8 +75,10 @@ void GameStateStage3::update(bool paused) {
 
     if(life == 0){
         gameover = true;
-
+        setPlayerColliding(true);
     }else if(getPlayerColliding()){
+
+        sleep(1);
         // Reset scene here
         unsigned int world_height = Config::config()->getWorldHeight();
         unsigned int world_width = Config::config()->getWorldWidth();
@@ -118,7 +121,7 @@ void GameStateStage3::update(bool paused) {
         count++;
 
         setRootEntity(root);
-        setPlayerColliding(false);
+
     }else{
         getRootEntity()->update(paused || getPlayerColliding(), deltaTimeMilliseconds);
         if (getPlayer() != nullptr) {

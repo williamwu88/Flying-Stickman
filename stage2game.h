@@ -10,7 +10,7 @@ public:
     Stage2Game(GameState* state);
     ~Stage2Game() override;
 
-    void render(QPainter &painter);
+    virtual void render(QPainter &painter);
 
 protected:
 

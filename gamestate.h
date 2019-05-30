@@ -29,8 +29,11 @@ public:
 
     virtual void update(bool paused);
 
+    // Stage 3 exclusive
     void setPlayerColliding(bool b) { player_colliding = b;}
     bool getPlayerColliding() {return player_colliding; }
+
+    virtual bool getGameOver() { return false; }
 
 protected:
     virtual void checkCollisions();

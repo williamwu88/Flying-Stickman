@@ -6,11 +6,32 @@
 #include <iostream>
 
 Stage3Game::Stage3Game(GameState* state)
-    : Stage2Game(state) {}
+    : Stage2Game(state)
+{
+    scoreboard = new ScoreBoard(new Coordinate(100, 100, Config::config()->getWorldHeight(), Config::config()->getWorldWidth()), "scoreboard");
+}
 
-//void Stage3Game::paintEvent(QPaintEvent *event){
-//    state->update(this);
-//}
+void Stage3Game::render(QPainter &painter){
+    if(state->getGameOver()){
+        painter.drawText(100,200, "GAMEOVER. Press 'Q' to restart");
+        scoreboard->render(painter);
+    }else{
+        Stage2Game::render(painter);
+
+        scoreboard->render(painter);
+    }
+}
+
+void Stage3Game::paintEvent(QPaintEvent *event){
+    // Update game
+    state->update(paused);
+
+    scoreboard->update(paused || state->getPlayerColliding() || state->getGameOver(), 1);
+
+    // Render game
+    QPainter painter(this);
+    render(painter);
+}
 
 //Stage3Game::~Stage3Game() {
 //    delete state;
