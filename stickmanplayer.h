@@ -15,10 +15,9 @@ public:
     StickmanPlayer(Coordinate* position, std::string name);
     ~StickmanPlayer() override;
 
-    virtual void jump() override;
+    void jump() override;
     void checkGroundCollision();
     void landed();
-    Obstacle* checkCollisions(std::vector<Obstacle*> obstacles);
 
     virtual RectCollider* getCollider() override { return &collider; }
 

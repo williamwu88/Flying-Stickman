@@ -3,6 +3,7 @@
 
 #include "compositeentity.h"
 #include "rectcollider.h"
+#include "config.h"
 #include <QPixmap>
 
 class VictoryFlag : public CompositeEntity {
@@ -16,6 +17,10 @@ public:
     virtual void render(QPainter &painter) override;
 
     bool isMoving() { return is_moving; }
+
+    // Stage 3
+    void setVelocity() {velocity = -Config::config()->getStickman()->getVelocity();}
+
 private:
     RectCollider collider;
     double width;

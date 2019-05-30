@@ -4,6 +4,7 @@
 #include <QColor>
 #include "compositeentity.h"
 #include "rectcollider.h"
+#include "config.h"
 
 class Obstacle : public CompositeEntity {
 
@@ -17,6 +18,9 @@ public:
     virtual void render(QPainter &painter) override;
 
     bool isMoving() {return is_moving; }
+
+    // Stage 3
+    void setVelocity() {velocity = -Config::config()->getStickman()->getVelocity();}
 
 private:
     QColor colour;

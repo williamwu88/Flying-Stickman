@@ -35,13 +35,6 @@ void ExtendedConfigStage3::setupStage3Config(){
                     split_line.first() == "Background" ||
                     split_line.first() == "Obstacles"){
                 continue;
-            }else if(split_line.first() == "Level"){
-                if (element.toInt() < 0 || element.toInt() == 0){
-                    std::cerr << "Level is not valid. Level should be a number >0" << std::endl;
-                    return;
-                }
-
-                level = element.toInt();
             }else if(split_line.first() == "Life"){
                 if (element.toInt() < 0 || element.toInt() == 0){
                     std::cerr << "Life is not valid. Life should be a number >0" << std::endl;

@@ -27,8 +27,9 @@ Obstacle::Obstacle(Coordinate* position, double width, double height, double vel
 }
 
 void Obstacle::update(bool paused, double time_since_last_frame) {
-
     if (!paused) {
+        setVelocity();
+
         is_moving = true;
 
         if (dist_travelled >= loop_after) {

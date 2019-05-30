@@ -17,8 +17,6 @@ GameState *Stage3GameStateFactory::createGameState(){
 
     // Create background and player
     Background* background = new Background(Coordinate(0, world_height, world_height, world_width));
-
-    // Might change this
     StickmanPlayerStage3* player = new StickmanPlayerStage3(new Coordinate(Config::config()->getStickman()->getXPosition()- (Config::config()->getStickman()->getWidth()*0.5),
                                                 0 + Config::config()->getStickman()->getHeight(),
                                                 world_height,
@@ -27,7 +25,7 @@ GameState *Stage3GameStateFactory::createGameState(){
     Coordinate* pos = new Coordinate(0, 0, world_height, world_width);
     EmptyEntity* root = new EmptyEntity(pos, "root");
 
-    // Will change this!
+    // Will CHANGE this!
     ExtendedConfig config(*Config::config());
     // Load obstacle data
     std::vector<ObstacleConfig*> obstacle_data = config.getObstacleData();

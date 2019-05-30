@@ -59,7 +59,8 @@ SOURCES += \
     extendedconfigstage3.cpp \
     victoryflag.cpp \
     gamestatestage3.cpp \
-    stickmanplayerstage3.cpp
+    stickmanplayerstage3.cpp \
+    physicsbodystage3.cpp
 
 HEADERS += \
     coordinate.h \
@@ -95,7 +96,8 @@ HEADERS += \
     extendedconfigstage3.h \
     victoryflag.h \
     gamestatestage3.h \
-    stickmanplayerstage3.h
+    stickmanplayerstage3.h \
+    physicsbodystage3.h
 
 FORMS += \
     pausedialog.ui \

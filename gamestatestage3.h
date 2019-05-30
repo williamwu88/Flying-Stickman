@@ -11,13 +11,20 @@ public:
     GameStateStage3();
 //    virtual ~GameStateStage3();
 
-    void checkCollisionStatus();
-    std::string checkCollisionObject();
+    // Stage 3 exclusive
+    Entity* checkCollisionObject();
+
+    void checkCollisions() override;
+    void update(bool paused) override;
 
 protected:
 
 private:
-    bool victory;
+    unsigned int life = 5;
+
+    bool gameover = false;
+    bool obstacle_collided = false;
+    bool victory_flag_collided = false;
 
 };
 

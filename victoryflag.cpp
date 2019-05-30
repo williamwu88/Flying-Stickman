@@ -29,8 +29,12 @@ VictoryFlag::VictoryFlag(Coordinate* position, double width, double height, doub
 void VictoryFlag::update(bool paused, double time_since_last_frame){
 
     if(!paused) {
-//        is_moving = true;
+        setVelocity();
 
+        if(this->getPosition()->getXCoordinate()<0){
+            dist_travelled = 0;
+            this->getPosition()->changeInXCoordinate(ending_position);
+        }
         if(dist_travelled >= ending_position){
             this->getPosition()->changeInXCoordinate(velocity);
         }
@@ -45,8 +49,6 @@ void VictoryFlag::update(bool paused, double time_since_last_frame){
         std::cout << dist_travelled << "," << ending_position << std::endl;
 
         dist_travelled -= velocity;
-    } else{
-//        is_moving = false;
     }
 }
 

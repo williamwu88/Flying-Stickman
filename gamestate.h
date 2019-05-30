@@ -27,11 +27,13 @@ public:
     Player* getPlayer();
     void setPlayer(Player* player);
 
-    void update(bool paused);
+    virtual void update(bool paused);
+
+    void setPlayerColliding(bool b) { player_colliding = b;}
     bool getPlayerColliding() {return player_colliding; }
 
 protected:
-    void checkCollisions();
+    virtual void checkCollisions();
 
 private:
     Entity* findEntityByNameRecursive(const std::string& name, Entity* root);
