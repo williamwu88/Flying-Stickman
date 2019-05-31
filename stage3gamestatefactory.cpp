@@ -62,7 +62,7 @@ GameState *Stage3GameStateFactory::createGameState(){
     VictoryFlag *victoryflag = new VictoryFlag(new Coordinate(previous_x, 100, world_height, world_width),
                                                100, world_height,
                                                -Config::config()->getStickman()->getVelocity(),
-                                               loop*3, "victory_flag");
+                                               loop, "victory_flag");
     root->addChild(victoryflag);
     count++;
 

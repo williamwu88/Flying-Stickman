@@ -31,12 +31,15 @@ private:
     unsigned int life = 5;
     unsigned int level = 1;
     double default_velocity;
+    double current_velocity;
 
     bool gameover = false;
     bool obstacle_collided = false;
     bool victory_flag_collided = false;
 
     QSound giant_explode;
+    QSound lose_life;
+    QSound victory;
 
 };
 

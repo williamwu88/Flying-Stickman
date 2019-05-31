@@ -15,9 +15,12 @@
 
 GameStateStage3::GameStateStage3()
     : GameState(),
-      giant_explode(":/sound/ding-sound-effect.wav")
+      giant_explode(":/sound/ding-sound-effect.wav"),
+      lose_life(":/sound/game-over.wav"),
+      victory(":/sound/victory.wav")
 {
     default_velocity = Config::config()->getStickman()->getVelocity();
+    current_velocity = default_velocity;
 }
 
 Entity* GameStateStage3::checkCollisionObject() {
@@ -56,27 +59,37 @@ void GameStateStage3::checkCollisions() {
                 entity->onCollision(getPlayer());
                 if(entity->getName().compare(0, 8, "obstacle") == 0){
                     if(e == entity){
-
+                        player_collided = true;
                     }else{
                         if(Config::config()->getStickman()->getSize() == "giant"){
                             giant_explode.play();
+                            entity->onCollision(this->getPlayer());
                         }else{
                             e = entity;
+                            lose_life.play();
                             life--;
                             std::cout << "Life now is :" << life << std::endl;
+                            current_velocity = Config::config()->getStickman()->getVelocity();
                             player_collided = true;
                         }
                     }
                 }else if(entity->getName().compare("victory_flag") == 0){
-                    level++;
-                    Stickman* stickman = Config::config()->getStickman();
-                    if(stickman->getVelocity() >= 30){
+                    if(e == entity){
 
                     }else{
-                        stickman->changeVelocity(stickman->getVelocity()+static_cast<double>(level));
-                        std::cout << "Velocity " << stickman->getVelocity() << std::endl;
+                        e = entity;
+                        victory.play();
+                        level++;
+                        Stickman* stickman = Config::config()->getStickman();
+                        if(stickman->getVelocity() >= 30){
+
+                        }else{
+                            stickman->changeVelocity(stickman->getVelocity()+static_cast<double>(level));
+                            std::cout << "Velocity " << stickman->getVelocity() << std::endl;
+                            current_velocity = stickman->getVelocity();
+                        }
+                        victory_flag_collided = true;
                     }
-                    victory_flag_collided = true;
                 }
             }
         }
@@ -90,22 +103,35 @@ void GameStateStage3::update(bool paused) {
     checkCollisions();
     double deltaTimeMilliseconds = 32; // Comes from hard coded timer interval value in Stage1Game.
 
+    Stickman* stickman = Config::config()->getStickman();
+
     if(life == 0){
         gameover = true;
         setPlayerColliding(true);
-        Stickman* stickman = Config::config()->getStickman();
         stickman->changeVelocity(default_velocity);
         level = 1;
 
     }else if(victory_flag_collided){
-        sleep(1);
-        resetScene();
-        victory_flag_collided = false;
+        stickman->changeVelocity(0);
+        if(victory.isFinished()){
+            stickman->changeVelocity(current_velocity);
+            std::cout << "Now stickman velocity is " << current_velocity << std::endl;
+            resetScene();
+            victory_flag_collided = false;
+        }else{
+            setPlayerColliding(true);
+        }
+
     }
     else if(getPlayerColliding()){
-        sleep(1);
-        resetScene();
-
+        stickman->changeVelocity(0);
+        if(lose_life.isFinished()){
+            stickman->changeVelocity(current_velocity);
+            std::cout << "Now stickman velocity is " << current_velocity << std::endl;
+            resetScene();
+        }else{
+            setPlayerColliding(true);
+        }
     }else{
         getRootEntity()->update(paused || getPlayerColliding(), deltaTimeMilliseconds);
         if (getPlayer() != nullptr) {
@@ -153,7 +179,7 @@ void GameStateStage3::resetScene(){
     VictoryFlag *victoryflag = new VictoryFlag(new Coordinate(world_width, 100, world_height, world_width),
                                                100, world_height,
                                                -Config::config()->getStickman()->getVelocity(),
-                                               loop*3, "victory_flag");
+                                               loop*level, "victory_flag");
     root->addChild(victoryflag);
     count++;
 

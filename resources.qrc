@@ -26,5 +26,7 @@
         <file>sound/Game-Menu.mp3</file>
         <file>sound/jump-sound.wav</file>
         <file>sound/ding-sound-effect.wav</file>
+        <file>sound/game-over.wav</file>
+        <file>sound/victory.wav</file>
     </qresource>
 </RCC>
