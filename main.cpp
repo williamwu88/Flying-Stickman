@@ -5,6 +5,8 @@
 
 #include "stage3gamefactory.h"
 #include "stage3gamestatefactory.h"
+#include "stage3testfactory.h"
+#include "testinterfacestage3.h"
 
 #include "tester.h"
 
@@ -32,6 +34,11 @@ int main(int argc, char *argv[]) {
 //    auto state_factory = std::unique_ptr<GameStateFactory>(new Stage2GameStateFactory());
 //    Tester tester(state_factory);
 //    tester.run(2048);
+
+    // Create test version of the game
+//    Stage3TestFactory* testFactory = new Stage3TestFactory();
+//    TestInterfaceStage3 *interface = new TestInterfaceStage3(testFactory);
+
 
     // Create rendered version of the game
     GameFactory* factory = new Stage3GameFactory();

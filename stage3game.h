@@ -23,8 +23,8 @@ protected:
     void keyPressEvent(QKeyEvent *event) override;
     void keyReleaseEvent(QKeyEvent *event) override;
 
-private slots:
-    void handleButton();
+//private slots:
+//    void handleButton();
 
 private:
     ScoreBoard* scoreboard;

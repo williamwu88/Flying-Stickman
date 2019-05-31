@@ -85,4 +85,9 @@ The GameState class is the product (however instances of it can be created), pro
 
 ### Iterator
 
-The Iterator class is an abstract class which has two pure virtual method getNext() and hasNext(). ObstacleIterator class is the concrete implementation of Iterator class. The ObstacleIterable has one method createIterator, which creates an obstacle iterator based on obstacle_data in the config file.
+The Iterator class is an abstract class which has two pure virtual method getNext() and hasNext(). ObstacleIterator class is the concrete implementation of Iterator class. The ObstacleIterable has one method createIterator(), which creates an obstacle iterator based on obstacle_data in the config file.
+
+
+# Test interface for stage 3
+
+Uncomment following two lines "Create test version of the game" to enable test interface, which will replace background and gets into test interface to monitor collision status and player x, y velocity.

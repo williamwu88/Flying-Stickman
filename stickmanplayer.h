@@ -25,6 +25,8 @@ public:
     virtual void update(bool paused, double time_since_last_frame) override;
     virtual void render(QPainter &painter) override;
 
+    virtual double getYVelocity() override { return physics_body.getYVelocity(); };
+
 private:
     // Coordinate for managing jumping and other movement independently to config positions.
     Coordinate* offset_position;

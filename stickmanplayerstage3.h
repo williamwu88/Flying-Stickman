@@ -37,6 +37,8 @@ public:
     void increaseLevel() { level++; }
     unsigned int getLevel() { return level; }
 
+    virtual double getYVelocity() override { return physics_body_stage3.getYVelocity(); };
+
 private:
 //    unsigned int life = 5;
     PhysicsBodyStage3 physics_body_stage3;

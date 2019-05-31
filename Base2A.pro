@@ -63,7 +63,10 @@ SOURCES += \
     physicsbodystage3.cpp \
     scoreboard.cpp \
     obstacleiterable.cpp \
-    obstacleiterator.cpp
+    obstacleiterator.cpp \
+    testinterfacestage3.cpp \
+    stage3testfactory.cpp \
+    stage3test.cpp
 
 HEADERS += \
     coordinate.h \
@@ -104,7 +107,10 @@ HEADERS += \
     scoreboard.h \
     iterator.h \
     obstacleiterable.h \
-    obstacleiterator.h
+    obstacleiterator.h \
+    testinterfacestage3.h \
+    stage3testfactory.h \
+    stage3test.h
 
 FORMS += \
     pausedialog.ui \

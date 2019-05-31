@@ -66,7 +66,6 @@ void GameStateStage3::checkCollisions() {
                         if(Config::config()->getStickman()->getSize() == "giant"){
                             giant_explode.play();
                             entity->onCollision(this->getPlayer());
-                            std::cout << "We are here" << std::endl;
                         }else{
                             e = entity;
                             lose_life.play();
