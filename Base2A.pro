@@ -61,7 +61,6 @@ SOURCES += \
     gamestatestage3.cpp \
     stickmanplayerstage3.cpp \
     physicsbodystage3.cpp \
-    text.cpp \
     scoreboard.cpp
 
 HEADERS += \
@@ -100,7 +99,6 @@ HEADERS += \
     gamestatestage3.h \
     stickmanplayerstage3.h \
     physicsbodystage3.h \
-    text.h \
     scoreboard.h
 
 FORMS += \

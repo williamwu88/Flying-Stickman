@@ -13,7 +13,8 @@
 
 #include <iostream>
 #include <memory>
-
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
 
 //Allocating and initializing Config static data member. The pointer is being allocated - not the object itself
 int main(int argc, char *argv[]) {
@@ -23,9 +24,9 @@ int main(int argc, char *argv[]) {
     Config::config()->setupConfig();
 
     //Infinite loop of background music
-    QSound sound(":sound/background_music.wav");
-    sound.setLoops(-1);
-    sound.play();
+//    QSound sound(":/sound/background_music.wav");
+//    sound.setLoops(-1);
+//    sound.play();
 
     // Create testing interface with a separate game state.
 //    auto state_factory = std::unique_ptr<GameStateFactory>(new Stage2GameStateFactory());

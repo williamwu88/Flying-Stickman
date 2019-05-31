@@ -5,6 +5,7 @@
 #include "scoreboard.h"
 #include <string>
 #include <vector>
+#include <QSound>
 
 class GameStateStage3 : public GameState {
 
@@ -19,15 +20,23 @@ public:
     void update(bool paused) override;
 
     bool getGameOver() override {return gameover;}
+    unsigned int getLevel() override {return level;}
+    unsigned int getLife() override {return life;}
+
+    void resetScene();
 
 protected:
 
 private:
     unsigned int life = 5;
+    unsigned int level = 1;
+    double default_velocity;
 
     bool gameover = false;
     bool obstacle_collided = false;
     bool victory_flag_collided = false;
+
+    QSound giant_explode;
 
 };
 

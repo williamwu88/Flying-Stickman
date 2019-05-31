@@ -34,6 +34,8 @@ public:
     bool getPlayerColliding() {return player_colliding; }
 
     virtual bool getGameOver() { return false; }
+    virtual unsigned int getLevel() {return 1;}
+    virtual unsigned int getLife() {return 1;}
 
 protected:
     virtual void checkCollisions();

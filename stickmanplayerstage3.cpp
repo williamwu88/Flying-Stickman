@@ -1,6 +1,8 @@
 #include "stickmanplayerstage3.h"
 
 #include "coordinate.h"
+#include <sstream>
+#include <QSound>
 
 StickmanPlayerStage3::StickmanPlayerStage3(Coordinate* position, std::string name)
     : Player(position, name),
@@ -12,7 +14,8 @@ StickmanPlayerStage3::StickmanPlayerStage3(Coordinate* position, std::string nam
       jump_count(0),
       frame_number(1),
       counter(0),
-      level(1)
+      level(1),
+      sound(":/sound/jump-sound.wav")
 {
     physics_body_stage3.setYAcceleration(gravity);
 }
@@ -22,10 +25,22 @@ StickmanPlayerStage3::~StickmanPlayerStage3(){
 }
 
 void StickmanPlayerStage3::jump() {
+
+    if (Config::config()->getStickman()->getSize() == "large"){
+        max_jump_count = 3;
+    } else if (Config::config()->getStickman()->getSize() == "giant"){
+        max_jump_count = 3;
+    } else {
+        max_jump_count = 2;
+    }
+
     if (jump_count < max_jump_count) {
         jump_count += 1;
         physics_body_stage3.setYVelocity(std::sqrt(-2*gravity*jump_height));
+
+        sound.play();
     }
+
 }
 
 void StickmanPlayerStage3::landed() {
@@ -47,19 +62,7 @@ void StickmanPlayerStage3::onCollision(Entity *other){
         e = other;
 
         std::cout << other->getName() << std::endl;
-        if(other->getName().compare(0, 8, "obstacle") == 0){
 
-        }else if(other->getName().compare("victory_flag") == 0){
-
-            // increase level
-            increaseLevel();
-            std::cout << "level increased" << std::endl;
-            Stickman* stickman = Config::config()->getStickman();
-            stickman->changeVelocity(stickman->getVelocity()+static_cast<double>(level));
-
-            std::cout << "Velocity " << stickman->getVelocity() << std::endl;
-
-        }
     }else{
 
     }

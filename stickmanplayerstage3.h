@@ -9,6 +9,7 @@
 #include "gamestatestage3.h"
 
 #include <cmath>
+#include <QSound>
 
 class StickmanPlayerStage3 : public Player{
 public:
@@ -45,13 +46,14 @@ private:
     double jump_height;
     double gravity;
     int jump_count;
-    const int max_jump_count = 2;
+    int max_jump_count = 2;
 
     int frame_number;
     int counter;
 
     // Stage 3
     unsigned int level;
+    QSound sound;
 
 };
 
