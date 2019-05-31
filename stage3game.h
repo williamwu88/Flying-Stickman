@@ -29,10 +29,16 @@ protected:
 private:
     ScoreBoard* scoreboard;
 
-    QMediaPlaylist *playlist;
-    QMediaPlayer *music;
+    double stickman_velocity = 0;
+    bool pressedL = false;
+    bool pressedR = true;
 
-    QPushButton *m_button;
+    double stickman_dist_travelled = 0;
+
+//    QMediaPlaylist *playlist;
+//    QMediaPlayer *music;
+
+//    QPushButton *m_button;
 };
 
 #endif // STAGE3GAME_H

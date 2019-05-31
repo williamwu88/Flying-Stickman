@@ -9,7 +9,7 @@
 #include "extendedconfig.h"
 #include "emptyentity.h"
 #include "victoryflag.h"
-#include "obstacleiterable.h"
+#include "ObstacleIterable.h"
 #include "obstacleiterator.h"
 #include <sstream>
 #include <iostream>
@@ -86,8 +86,8 @@ void GameStateStage3::checkCollisions() {
                         if(stickman->getVelocity() >= 30){
 
                         }else{
-                            stickman->changeVelocity(stickman->getVelocity()+static_cast<double>(level));
-                            std::cout << "Velocity " << stickman->getVelocity() << std::endl;
+//                            stickman->changeVelocity(stickman->getVelocity()+static_cast<double>(level));
+//                            std::cout << "Velocity " << stickman->getVelocity() << std::endl;
                             current_velocity = stickman->getVelocity();
                         }
                         victory_flag_collided = true;
@@ -116,8 +116,8 @@ void GameStateStage3::update(bool paused) {
     }else if(victory_flag_collided){
         stickman->changeVelocity(0);
         if(victory.isFinished()){
-            stickman->changeVelocity(current_velocity);
-            std::cout << "Now stickman velocity is " << current_velocity << std::endl;
+//            stickman->changeVelocity(current_velocity);
+//            std::cout << "Now stickman velocity is " << current_velocity << std::endl;
             resetScene();
             victory_flag_collided = false;
         }else{
@@ -128,14 +128,15 @@ void GameStateStage3::update(bool paused) {
     else if(getPlayerColliding()){
         stickman->changeVelocity(0);
         if(lose_life.isFinished()){
-            stickman->changeVelocity(current_velocity);
-            std::cout << "Now stickman velocity is " << current_velocity << std::endl;
+//            stickman->changeVelocity(current_velocity);
+//            std::cout << "Now stickman velocity is " << current_velocity << std::endl;
             resetScene();
         }else{
             setPlayerColliding(true);
         }
     }else{
         getRootEntity()->update(paused || getPlayerColliding(), deltaTimeMilliseconds);
+        getPlayer()->update(paused, deltaTimeMilliseconds);
     }
 
 }
@@ -145,7 +146,8 @@ void GameStateStage3::resetScene(){
     unsigned int world_height = Config::config()->getWorldHeight();
     unsigned int world_width = Config::config()->getWorldWidth();
     EmptyEntity* root = new EmptyEntity(new Coordinate(0, 0, world_height, world_width), "root");
-    ExtendedConfig config(*Config::config());
+
+    ExtendedConfigStage3 config(*Config::config());
     std::vector<ObstacleConfig*> obstacle_data = config.getObstacleData();
 
     // Calculate when to loop the obstacles, set random obstacle x coordinate
@@ -173,6 +175,9 @@ void GameStateStage3::resetScene(){
                                                -Config::config()->getStickman()->getVelocity(),
                                                loop*level, "victory_flag");
     root->addChild(victoryflag);
+
+    setRootEntity(root);
+    Config::config()->getStickman()->changeVelocity(0);
 
     setRootEntity(root);
 }

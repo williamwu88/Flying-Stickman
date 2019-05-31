@@ -7,10 +7,10 @@
 ScoreBoard::ScoreBoard(Coordinate *position, std::string name)
     : CompositeEntity(position, name){}
 
-void ScoreBoard::update(bool paused, double time_since_last_frame){
+void ScoreBoard::update(bool paused, double dist_travelled){
 
     if (!paused) {
-        setScore(current_score+time_since_last_frame);
+        setScore(dist_travelled);
     }
 
 }

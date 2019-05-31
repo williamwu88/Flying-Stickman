@@ -52,7 +52,7 @@ GameState *Stage3GameStateFactory::createGameState(){
 
     // Create victory flag
     previous_x += world_width;
-    VictoryFlag *victoryflag = new VictoryFlag(new Coordinate(previous_x, 100, world_height, world_width),
+    VictoryFlag *victoryflag = new VictoryFlag(new Coordinate(world_width, 100, world_height, world_width),
                                                100, world_height,
                                                -Config::config()->getStickman()->getVelocity(),
                                                loop, "victory_flag");
