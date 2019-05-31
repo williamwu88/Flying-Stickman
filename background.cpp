@@ -119,6 +119,4 @@ void Background::render(QPainter &painter, bool paused) {
         }
         third_coordinate.changeInXCoordinate(-Config::config()->getStickman()->getVelocity());
     }
-
-
 }

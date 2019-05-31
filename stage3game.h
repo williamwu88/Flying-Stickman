@@ -16,10 +16,12 @@ public:
 //    ~Stage3Game() override;
 
     void render(QPainter &painter) override;
+    void renderBackground(QPainter &painter);
 
 protected:
     void paintEvent(QPaintEvent *event) override;
     void keyPressEvent(QKeyEvent *event) override;
+    void keyReleaseEvent(QKeyEvent *event) override;
 
 private slots:
     void handleButton();

@@ -2,10 +2,13 @@
 #include "stage3game.h"
 #include "stickmanplayerstage3.h"
 #include "obstacle.h"
-#include "extendedconfig.h"
+//#include "extendedconfig.h"
+#include "extendedconfigstage3.h"
 #include "emptyentity.h"
 #include "victoryflag.h"
 #include "scoreboard.h"
+#include "obstacleiterable.h"
+#include "obstacleiterator.h"
 #include <sstream>
 
 GameState *Stage3GameStateFactory::createGameState(){
@@ -24,12 +27,12 @@ GameState *Stage3GameStateFactory::createGameState(){
     Coordinate* pos = new Coordinate(0, 0, world_height, world_width);
     EmptyEntity* root = new EmptyEntity(pos, "root");
 
-    // Will CHANGE this!
-    ExtendedConfig config(*Config::config());
+    // Read stage 3 config
+    ExtendedConfigStage3 config(*Config::config());
     // Load obstacle data
     std::vector<ObstacleConfig*> obstacle_data = config.getObstacleData();
 
-    // Calculate when to loop the obstacles
+    // Calculate when to loop the obstacles, set random obstacle x coordinate
     double loop = world_width;
     for (auto* obstacleConfig : obstacle_data){
         obstacleConfig->offset_x += std::rand() % 100;
@@ -38,37 +41,28 @@ GameState *Stage3GameStateFactory::createGameState(){
 
     // Create obstacles
     double previous_x = world_width;
-    int count = 0;
-    int lastObstacleWidth = 0;
 
-    for (auto* obstacleConfig : obstacle_data){
-        previous_x = previous_x + obstacleConfig->offset_x;
-        std::stringstream name;
-        name << "obstacle_" << count;
-        Coordinate* obs_pos = new Coordinate(previous_x, obstacleConfig->position_y, world_height, world_width);
-        Obstacle* obs = new Obstacle(obs_pos, obstacleConfig->width, obstacleConfig->height,
-                                     -Config::config()->getStickman()->getVelocity(), loop,
-                                     QColor(std::rand() % 255, std::rand() % 255, std::rand() % 255), name.str());
+    ObstacleIterable obstacle_iterable(obstacle_data);
+    Iterator *obstacle_iterator = obstacle_iterable.createIterator(loop);
+    Obstacle* obs = nullptr;
+    while(obstacle_iterator->hasNext()){
+        obs = obstacle_iterator->getNext();
         root->addChild(obs);
-
-        lastObstacleWidth = obstacleConfig->width;
-        count++;
     }
 
     // Create victory flag
-    previous_x += lastObstacleWidth;
-    previous_x += 400;
+    previous_x += world_width;
     VictoryFlag *victoryflag = new VictoryFlag(new Coordinate(previous_x, 100, world_height, world_width),
                                                100, world_height,
                                                -Config::config()->getStickman()->getVelocity(),
                                                loop, "victory_flag");
     root->addChild(victoryflag);
-    count++;
 
     // Create entity tree
     state->setRootEntity(root);
     state->setBackground(background);
     state->setPlayer(player);
+    state->setLife(config.getLife());
 
     return state;
 }

@@ -1,0 +1,14 @@
+#ifndef ITERABLEOBSTACLE_H
+#define ITERABLEOBSTACLE_H
+
+#include "obstacle.h"
+#include "iterator.h"
+
+class IterableObstacle{
+public:
+    IterableObstacle();
+    
+    virtual Iterator* createIterator() = 0;
+};
+
+#endif // ITERABLEOBSTACLE_H

@@ -61,7 +61,9 @@ SOURCES += \
     gamestatestage3.cpp \
     stickmanplayerstage3.cpp \
     physicsbodystage3.cpp \
-    scoreboard.cpp
+    scoreboard.cpp \
+    obstacleiterable.cpp \
+    obstacleiterator.cpp
 
 HEADERS += \
     coordinate.h \
@@ -99,7 +101,10 @@ HEADERS += \
     gamestatestage3.h \
     stickmanplayerstage3.h \
     physicsbodystage3.h \
-    scoreboard.h
+    scoreboard.h \
+    iterator.h \
+    obstacleiterable.h \
+    obstacleiterator.h
 
 FORMS += \
     pausedialog.ui \
@@ -110,4 +115,5 @@ RESOURCES += \
     resources.qrc
 
 DISTFILES += \
-    config.txt
+    config.txt \
+    README.md

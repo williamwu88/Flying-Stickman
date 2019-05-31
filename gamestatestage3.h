@@ -22,6 +22,7 @@ public:
     bool getGameOver() override {return gameover;}
     unsigned int getLevel() override {return level;}
     unsigned int getLife() override {return life;}
+    void setLife(unsigned int number) override { life = number; }
 
     void resetScene();
 
