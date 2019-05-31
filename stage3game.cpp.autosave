@@ -47,7 +47,8 @@ void Stage3Game::render(QPainter &painter){
     if(state->getGameOver()){
         painter.setPen(Qt::red);
         QFont font("Times", 50, QFont::Bold);
-        painter.drawText(Config::config()->getWorldWidth()/2,Config::config()->getWorldHeight()/2, "GAMEOVER. Press 'Q' to restart");
+        painter.setFont(font);
+        painter.drawText(Config::config()->getWorldWidth()/2-50,Config::config()->getWorldHeight()/2, "GAMEOVER. Press 'Q' to restart");
         scoreboard->render(painter, state->getLevel(), state->getLife());
     }else{
         Stage2Game::render(painter);

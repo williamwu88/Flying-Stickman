@@ -64,6 +64,7 @@ void GameStateStage3::checkCollisions() {
                         if(Config::config()->getStickman()->getSize() == "giant"){
                             giant_explode.play();
                             entity->onCollision(this->getPlayer());
+                            std::cout << "We are here" << std::endl;
                         }else{
                             e = entity;
                             lose_life.play();
@@ -152,6 +153,7 @@ void GameStateStage3::resetScene(){
     // Calculate when to loop the obstacles
     double loop = world_width;
     for (auto* obstacleConfig : obstacle_data){
+        obstacleConfig->offset_x += std::rand() % 100;
         loop += obstacleConfig->offset_x;
     }
 
@@ -167,7 +169,7 @@ void GameStateStage3::resetScene(){
         Coordinate* obs_pos = new Coordinate(previous_x, obstacleConfig->position_y, world_height, world_width);
         Obstacle* obs = new Obstacle(obs_pos, obstacleConfig->width, obstacleConfig->height,
                                      -Config::config()->getStickman()->getVelocity(), loop,
-                                     QColor(obstacleConfig->colour_red, obstacleConfig->colour_green, obstacleConfig->colour_blue), name.str());
+                                     QColor(std::rand() % 255, std::rand() % 255, std::rand() % 255), name.str());
         root->addChild(obs);
 
         lastObstacleWidth = obstacleConfig->width;

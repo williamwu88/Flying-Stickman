@@ -27,6 +27,11 @@ void ScoreBoard::render(QPainter &painter){
 }
 
 void ScoreBoard::render(QPainter &painter, unsigned int level, unsigned int life){
+
+    painter.setPen(Qt::red);
+    QFont font("Helvetica", 20, QFont::Bold);
+    painter.setFont(font);
+
     std::stringstream score;
     score << "Score: " << current_score;
 
