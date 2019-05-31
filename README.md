@@ -44,6 +44,15 @@ The style for this project is based on the Google [C++ style guide](https://goog
   1. Stickman can double jump. A variable can be changed to extend this to a triple jump or more. The Stickman also has a configurable jump height.
   2. Recursive Entity lookup. The GameState class has methods that allow the programmer to search the game state hierarchy for game entities by name, or by a substring of their name.
 
+## Stage 3
+  1. Mute background music button: In the startDialog there's a button which can be used to mute background music.
+  2. Random obstacle placement: The obstacle x coordinate is calculated based on the config plus a random number between 0 and 100.
+  3. Random obstacle colour: The obstacle color is random, we don't rely on RGB value in stage2, instead color is randomly generated.
+  4. Jump sound effect: When user hit "Space" play a jump sound effect.
+  5. Crash sound effect: When player hit an obstacle and he is not in "giant" size, player loses one life and sound effect will be played.
+  6. Victory sound effect: When player hit the victory flag, victory music will be played, and a new level starts.
+  7. Infinite level: There're infinite levels. The obstacle loop increases when level increases.
+
 # DESIGN PATTERNS
 
 ## Stage 1
@@ -71,3 +80,9 @@ There are two object adapters present in the code.
 ### Factory method
 
 The GameState class is the product (however instances of it can be created), produced by the createGameState() method in the abstract factory GameStateFactory. Stage2GameStateFactory is a concrete factory that produces Stage2GameState objects, which are concrete products inheriting from GameState. This allows for the customisation of GameState objects, and the easy creation of GameState instances in both the Stage2Game class and the Tester class.
+
+## Stage 3
+
+### Iterator
+
+The Iterator class is an abstract class which has two pure virtual method getNext() and hasNext(). ObstacleIterator class is the concrete implementation of Iterator class. The ObstacleIterable has one method createIterator, which creates an obstacle iterator based on obstacle_data in the config file.
