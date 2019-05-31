@@ -36,8 +36,8 @@ int main(int argc, char *argv[]) {
 //    tester.run(2048);
 
     // Create test version of the game
-//    Stage3TestFactory* testFactory = new Stage3TestFactory();
-//    TestInterfaceStage3 *interface = new TestInterfaceStage3(testFactory);
+    Stage3TestFactory* testFactory = new Stage3TestFactory();
+    TestInterfaceStage3 *interface = new TestInterfaceStage3(testFactory);
 
 
     // Create rendered version of the game

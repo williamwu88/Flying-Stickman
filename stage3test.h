@@ -17,7 +17,8 @@ protected:
 
 private:
     ScoreBoard* scoreboard;
-
+    double stickman_velocity = 0;
+    double stickman_dist_travelled = 0;
 
 };
 

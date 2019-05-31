@@ -11,12 +11,13 @@ Stage3Test::Stage3Test(GameState* state)
     : Stage3Game(state)
 {
     scoreboard = new ScoreBoard(new Coordinate(50, 50, Config::config()->getWorldHeight(), Config::config()->getWorldWidth()), "scoreboard");
+    stickman_velocity = getStickmanVelocity();
+    Config::config()->getStickman()->changeVelocity(0);
 }
 
 void Stage3Test::render(QPainter &painter){
 
-    state->getPlayer()->render(painter);
-    state->getRootEntity()->render(painter);
+    Stage2Game::render(painter);
 
     scoreboard->render(painter, state->getLevel(), state->getLife());
 
@@ -53,21 +54,31 @@ void Stage3Test::render(QPainter &painter){
 
 void Stage3Test::paintEvent(QPaintEvent *event){
     // Update game
-    state->getPlayer()->update(paused, 32);
+    state->update(paused);
+    stickman_dist_travelled += Config::config()->getStickman()->getVelocity()*state->getLevel();
+    scoreboard->update(paused, stickman_dist_travelled);
 
     // Render game
     QPainter painter(this);
     render(painter);
 }
 
-//Stage3Game::~Stage3Game() {
-//    delete state;
-//}
 
 void Stage3Test::keyPressEvent(QKeyEvent *event) {
-    if(event->type()==QEvent::KeyPress){
 
-//        Stickman *stickman = Config::config()->getStickman();
+    if(event->type()==QEvent::KeyPress){
+        Stickman *stickman = Config::config()->getStickman();
+        if(!event->isAutoRepeat() && event->key() == Qt::Key_Left){
+            std::cout << "L pressing" << std::endl;
+            stickman->changeVelocity(-stickman_velocity);
+        }
+        if(!event->isAutoRepeat() && event->key() == Qt::Key_Right){
+            std::cout << "R pressing" << std::endl;
+            stickman->changeVelocity(stickman_velocity);
+        }
+        if(event->key() == Qt::Key_Q){
+            close();
+        }
         if(event->key()==Qt::Key_P) {
 
             pause();
@@ -81,31 +92,23 @@ void Stage3Test::keyPressEvent(QKeyEvent *event) {
         if(event->key() == Qt::Key_Space) {
             state->getPlayer()->jump();
         }
-        if(event->key() == Qt::Key_Left){
-//            if(stickman->getXPosition()>10){
-//                stickman->changeXPosition(stickman->getXPosition()-10);
-//            }
-        }
-        if(event->key() == Qt::Key_Right){
-            state->update(paused);
-            scoreboard->update(paused || state->getPlayerColliding() || state->getGameOver(), 1);
-//            if(stickman->getXPosition() < Config::config()->getWorldWidth()-10){
-//                stickman->changeXPosition(stickman->getXPosition()+10);
-//            }
-        }
-        if(event->key() == Qt::Key_Q){
-//            music->stop();
-            close();
-        }
     }
-
 }
 
 void Stage3Test::keyReleaseEvent(QKeyEvent *event){
     if(event->type()==QEvent::KeyRelease){
-        if(event->key() == Qt::Key_Right){
-            state->update(false);
+        Stickman *stickman = Config::config()->getStickman();
+
+        if(!event->isAutoRepeat() && event->key() == Qt::Key_Left){
+            stickman->changeVelocity(0);
+            std::cout << "L released" << std::endl;
         }
+        if(!event->isAutoRepeat() && event->key() == Qt::Key_Right){
+            stickman->changeVelocity(0);
+            std::cout << "R released" << std::endl;
+        }
+
     }
 }
+
 
