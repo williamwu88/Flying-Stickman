@@ -20,10 +20,8 @@
         <file>sound/background_music.wav</file>
         <file>config/config.txt</file>
         <file>img/pic/victory-flag.png</file>
-        <file>sound/Netherplace.mp3</file>
         <file>img/music/mute.png</file>
         <file>img/music/unmute.png</file>
-        <file>sound/Game-Menu.mp3</file>
         <file>sound/jump-sound.wav</file>
         <file>sound/ding-sound-effect.wav</file>
         <file>sound/game-over.wav</file>
