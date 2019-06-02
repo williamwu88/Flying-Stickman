@@ -1,9 +1,6 @@
 #pragma once
 
 #include <QDialog>
-#include <QMediaPlaylist>
-#include <QMediaPlayer>
-#include <QPushButton>
 
 class GameFactory;
 
@@ -29,16 +26,8 @@ private slots:
     void on_bg2_radio_clicked();
     void on_start_clicked();
 
-    void handleButton();
-
 private:
     Ui::StartDialog *ui;
     GameFactory* gameFactory;
-
-    bool mute;
-    QMediaPlaylist *playlist;
-    QMediaPlayer *music;
-
-    QPushButton *m_button;
 };
 

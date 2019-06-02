@@ -69,9 +69,3 @@ void Obstacle::render(QPainter &painter) {
 
     renderChildren(painter);
 }
-
-void Obstacle::onCollision(Entity *e){
-    if(e->getName() == "stickman" && Config::config()->getStickman()->getSize()=="giant"){
-        dist_travelled = loop_after;
-    }
-}

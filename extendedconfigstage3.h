@@ -8,11 +8,8 @@ public:
     ExtendedConfigStage3(Config& config);
 //    ~ExtendedConfigStage3() override;
 
-    //Getter functions
     unsigned int getLife(){ return life; }
-
-    //Setter functions
-    void setLife(int number) { life = number; }
+    void setLife(unsigned int number) { life = number; }
 
 protected:
     void setupStage3Config();

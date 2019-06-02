@@ -66,7 +66,9 @@ SOURCES += \
     obstacleiterator.cpp \
     testinterfacestage3.cpp \
     stage3testfactory.cpp \
-    stage3test.cpp
+    stage3test.cpp \
+    obstaclestage3.cpp \
+    startdialogstage3.cpp
 
 HEADERS += \
     coordinate.h \
@@ -110,7 +112,9 @@ HEADERS += \
     obstacleiterator.h \
     testinterfacestage3.h \
     stage3testfactory.h \
-    stage3test.h
+    stage3test.h \
+    obstaclestage3.h \
+    startdialogstage3.h
 
 FORMS += \
     pausedialog.ui \

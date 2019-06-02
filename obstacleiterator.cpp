@@ -15,7 +15,7 @@ ObstacleIterator::ObstacleIterator(std::vector<ObstacleConfig *> obstacle_data, 
         std::stringstream name;
         name << "obstacle_" << count;
         Coordinate* obs_pos = new Coordinate(previous_x, obstacleConfig->position_y, world_height, world_width);
-        Obstacle* obs = new Obstacle(obs_pos, obstacleConfig->width, obstacleConfig->height,
+        ObstacleStage3* obs = new ObstacleStage3(obs_pos, obstacleConfig->width, obstacleConfig->height,
                                      -Config::config()->getStickman()->getVelocity(), loop,
                                      QColor(std::rand() % 255, std::rand() % 255, std::rand() % 255), name.str());
         count++;
@@ -24,8 +24,8 @@ ObstacleIterator::ObstacleIterator(std::vector<ObstacleConfig *> obstacle_data, 
     }
 }
 
-Obstacle *ObstacleIterator::getNext(){
-    Obstacle* obs = obstacles.at(index);
+ObstacleStage3 *ObstacleIterator::getNext(){
+    ObstacleStage3* obs = obstacles.at(index);
     index++;
     return obs;
 }

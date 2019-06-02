@@ -3,9 +3,9 @@
 
 #include "player.h"
 #include "stickman.h"
+#include "obstaclestage3.h"
 #include "config.h"
 #include "physicsbodystage3.h"
-#include "obstacle.h"
 #include "gamestatestage3.h"
 
 #include <cmath>

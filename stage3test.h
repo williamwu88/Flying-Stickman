@@ -6,6 +6,7 @@
 class Stage3Test : public Stage3Game {
 public:
     Stage3Test(GameState* state);
+    ~Stage3Test() override;
 
     void render(QPainter &painter) override;
     void renderBackground(QPainter &painter);
@@ -17,9 +18,12 @@ protected:
 
 private:
     ScoreBoard* scoreboard;
+
     double stickman_velocity = 0;
     double stickman_dist_travelled = 0;
 
+    bool pressedL = false;
+    bool pressedR = true;
 };
 
 #endif // STAGE3TEST_H

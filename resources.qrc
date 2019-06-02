@@ -28,5 +28,6 @@
         <file>sound/ding-sound-effect.wav</file>
         <file>sound/game-over.wav</file>
         <file>sound/victory.wav</file>
+        <file>img/pic/GAMEOVER.png</file>
     </qresource>
 </RCC>

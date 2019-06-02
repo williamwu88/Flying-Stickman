@@ -9,13 +9,13 @@ public:
     ObstacleIterator(std::vector<ObstacleConfig*> obstacle_data, double loop);
     virtual ~ObstacleIterator() = default;
 
-    Obstacle* getNext();
+    ObstacleStage3* getNext();
     bool hasNext();
 
     void resetIterator(){index = 0;}
 
 private:
-    std::vector<Obstacle*> obstacles;
+    std::vector<ObstacleStage3*> obstacles;
     unsigned int index = 0;
 
 };

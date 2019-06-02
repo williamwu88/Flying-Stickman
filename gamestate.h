@@ -28,10 +28,10 @@ public:
     void setPlayer(Player* player);
 
     virtual void update(bool paused);
+    bool getPlayerColliding() {return player_colliding; }
 
     // Stage 3 exclusive
     void setPlayerColliding(bool b) { player_colliding = b;}
-    bool getPlayerColliding() {return player_colliding; }
 
     virtual bool getGameOver() { return false; }
     virtual unsigned int getLevel() { return 1; }

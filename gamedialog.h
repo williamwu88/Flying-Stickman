@@ -26,8 +26,4 @@ protected:
     Ui::GameDialog *ui;
 
     bool paused;
-
-    //Stage3
-    void setMute(bool m){mute = m;}
-    bool mute;
 };

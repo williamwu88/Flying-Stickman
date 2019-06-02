@@ -11,6 +11,7 @@
 ExtendedConfigStage3::ExtendedConfigStage3(Config& config)
     : ExtendedConfig(config){
     setupConfig();
+    setupStage3Config();
 }
 
 void ExtendedConfigStage3::setupStage3Config(){

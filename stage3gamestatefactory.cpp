@@ -1,8 +1,6 @@
 #include "stage3gamestatefactory.h"
 #include "stage3game.h"
 #include "stickmanplayerstage3.h"
-#include "obstacle.h"
-//#include "extendedconfig.h"
 #include "extendedconfigstage3.h"
 #include "emptyentity.h"
 #include "victoryflag.h"
@@ -44,7 +42,7 @@ GameState *Stage3GameStateFactory::createGameState(){
 
     ObstacleIterable obstacle_iterable(obstacle_data);
     Iterator *obstacle_iterator = obstacle_iterable.createIterator(loop);
-    Obstacle* obs = nullptr;
+    ObstacleStage3* obs = nullptr;
     while(obstacle_iterator->hasNext()){
         obs = obstacle_iterator->getNext();
         root->addChild(obs);

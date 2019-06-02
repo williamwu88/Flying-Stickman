@@ -26,6 +26,7 @@ StickmanPlayerStage3::~StickmanPlayerStage3(){
 
 void StickmanPlayerStage3::jump() {
 
+    // Different jump count for large and giant sizes
     if (Config::config()->getStickman()->getSize() == "large"){
         max_jump_count = 3;
     } else if (Config::config()->getStickman()->getSize() == "giant"){
@@ -57,6 +58,8 @@ void StickmanPlayerStage3::checkGroundCollision() {
 
 void StickmanPlayerStage3::onCollision(Entity *other){
     static Entity *e = nullptr;
+
+    // print collision entity name
 
     if(e != other){
         e = other;

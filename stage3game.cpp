@@ -14,11 +14,15 @@ Stage3Game::Stage3Game(GameState* state)
     Config::config()->getStickman()->changeVelocity(0);
 }
 
+Stage3Game::~Stage3Game() {
+    delete scoreboard;
+}
+
 void Stage3Game::render(QPainter &painter){
     if(state->getGameOver()){
-        painter.setPen(Qt::red);
-        QFont font("Times", 50, QFont::Bold);
-        painter.drawText(Config::config()->getWorldWidth()/2,Config::config()->getWorldHeight()/2, "GAMEOVER. Press 'Q' to restart");
+        QPixmap gameover(":img/pic/GAMEOVER.png");
+        painter.drawPixmap(0, 0, Config::config()->getWorldWidth(), Config::config()->getWorldHeight(), gameover);
+
         scoreboard->render(painter, state->getLevel(), state->getLife());
     }else{
         Stage2Game::render(painter);
@@ -31,28 +35,25 @@ void Stage3Game::paintEvent(QPaintEvent *event){
     // Update game
     state->update(paused);
     stickman_dist_travelled += Config::config()->getStickman()->getVelocity()*state->getLevel();
-    scoreboard->update(paused, stickman_dist_travelled);
+    if(state->getLife() != 0){
+        scoreboard->update(paused, stickman_dist_travelled);
+    }
+
 
     // Render game
     QPainter painter(this);
     render(painter);
 }
 
-
-//Stage3Game::~Stage3Game() {
-//    delete state;
-//}
-
 void Stage3Game::keyPressEvent(QKeyEvent *event) {
-//    std::cout << stickman_velocity << std::endl;
     if(event->type()==QEvent::KeyPress){
         Stickman *stickman = Config::config()->getStickman();
         if(!event->isAutoRepeat() && event->key() == Qt::Key_Left){
-            pressedL = true;
+            // Stickman runs backwards
             stickman->changeVelocity(-stickman_velocity);
         }
         if(!event->isAutoRepeat() && event->key() == Qt::Key_Right){
-            pressedR = true;
+            // Stickman runs forwards
             stickman->changeVelocity(stickman_velocity);
         }
         if(event->key() == Qt::Key_Q){
@@ -80,13 +81,10 @@ void Stage3Game::keyReleaseEvent(QKeyEvent *event){
 
         if(!event->isAutoRepeat() && event->key() == Qt::Key_Left){
             stickman->changeVelocity(0);
-            pressedL = false;
         }
         if(!event->isAutoRepeat() && event->key() == Qt::Key_Right){
             stickman->changeVelocity(0);
-            pressedR = false;
         }
-
     }
 }
 

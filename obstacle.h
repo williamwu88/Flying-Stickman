@@ -21,7 +21,8 @@ public:
 
     // Stage 3
     void setVelocity() {velocity = -Config::config()->getStickman()->getVelocity();}
-    virtual void onCollision(Entity *e) override;
+    void setDist_travelled(double dist) { dist_travelled = dist; }
+    double getLoopAfter() { return loop_after; }
 
 private:
     QColor colour;

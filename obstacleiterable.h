@@ -1,7 +1,6 @@
 #ifndef ITERABLEOBSTACLE_H
 #define ITERABLEOBSTACLE_H
 
-#include "obstacle.h"
 #include "iterator.h"
 #include "extendedconfigstage3.h"
 

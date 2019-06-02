@@ -5,11 +5,11 @@
 #include "entity.h"
 #include "player.h"
 #include "rectcollider.h"
-#include "obstacle.h"
+#include "obstaclestage3.h"
 #include "extendedconfig.h"
 #include "emptyentity.h"
 #include "victoryflag.h"
-#include "ObstacleIterable.h"
+#include "obstacleiterable.h"
 #include "obstacleiterator.h"
 #include <sstream>
 #include <iostream>
@@ -70,7 +70,7 @@ void GameStateStage3::checkCollisions() {
                             e = entity;
                             lose_life.play();
                             life--;
-                            std::cout << "Life now is :" << life << std::endl;
+                            std::cout << "Life now is:" << life << std::endl;
                             current_velocity = Config::config()->getStickman()->getVelocity();
                             player_collided = true;
                         }
@@ -162,7 +162,7 @@ void GameStateStage3::resetScene(){
 
     ObstacleIterable obstacle_iterable(obstacle_data);
     Iterator *obstacle_iterator = obstacle_iterable.createIterator(loop);
-    Obstacle* obs = nullptr;
+    ObstacleStage3* obs = nullptr;
     while(obstacle_iterator->hasNext()){
         obs = obstacle_iterator->getNext();
         root->addChild(obs);
